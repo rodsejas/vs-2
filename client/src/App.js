@@ -1,5 +1,6 @@
 import "./App.css";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import Equipments from "./pages/Equipments";
 import Equipment from "./pages/Equipment";
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/equipments" element={<Equipment />} />
+          <Route path="/equipments" element={<Equipments />} />
+          <Route path="/equipment/:id" element={<Equipment />} />
         </Routes>
       </Router>
     </div>

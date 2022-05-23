@@ -1,14 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Equipment() {
-  const [equipments, setEquipments] = useState([]);
+  const [equipment, setEquipment] = useState([]);
 
-  useState(() => {
-    fetch("http://localhost:8000/equipments").then((res) =>
-      res.json().then((data) => setEquipments(data))
+  const fetchEquipment = async () => {
+    const { data } = await axios.get(
+      "http://localhost:8000/api/v1/equipment/:id"
     );
-  });
+    setEquipment(data);
+  };
+
+  useEffect(() => {
+    fetchEquipment();
+  }, []);
 
   return (
     <div>
