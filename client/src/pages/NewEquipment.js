@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL, BASE_API } from "../Constants";
 
 export default function NewEquipment() {
   const [newEquipment, setNewEquipment] = useState({
@@ -8,30 +10,29 @@ export default function NewEquipment() {
     model_id: "",
     status: "",
   });
+  const navigate = useNavigate();
 
   const _handleChange = (e) => {
     setNewEquipment({ ...newEquipment, [e.target.name]: e.target.value });
   };
 
-  const _handleSubmit = (e) => {
+  const _handleSubmit = async (e) => {
     e.preventDefault();
-    // const { serial_num, model_id, status } = newEquipment;
-    const reactData = newEquipment;
-    const url = `http://localhost:8000/api/v1/equipments`;
-    axios
-      .post(url, reactData)
-      .then((res) => console.log("Data sent"))
-      .catch((err) => console.log(err.data));
+
+    const url = `${BASE_URL}${BASE_API}/equipments`;
+    try {
+      const { data } = await axios.post(url, newEquipment);
+      const id = data[0].id;
+      navigate(`/equipment/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div>
       <p>New equipment coming soon</p>
-      <form
-        onSubmit={_handleSubmit}
-        method="POST"
-        action="http://localhost:8000/api/v1/equipments"
-      >
+      <form onSubmit={_handleSubmit}>
         <label>
           <p>Serial Number</p>
           <input type="text" name="serial_num" onInput={_handleChange} />
