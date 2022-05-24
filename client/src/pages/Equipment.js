@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { BASE_URL, BASE_API } from "../Constants";
 
 export default function Equipment() {
   const [equipment, setEquipment] = useState([]);
@@ -9,7 +10,7 @@ export default function Equipment() {
 
   const fetchEquipment = async () => {
     const { data } = await axios.get(
-      `http://localhost:8000/api/v1/equipment/${params.id}`
+      `${BASE_URL}${BASE_API}/equipment/${params.id}`
     );
     setEquipment(data);
   };
