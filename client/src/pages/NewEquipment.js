@@ -8,8 +8,48 @@ export default function NewEquipment() {
   const [newEquipment, setNewEquipment] = useState({
     serial_num: "",
     model_id: "",
-    status: "",
+    worker_id: "",
+    manufacture_date: "",
+    date_of_first_use: "",
+    end_of_life: "",
+    specification: "",
+    status: "Suitable",
   });
+
+  /**
+   * Fetch models for dropdown menu
+   */
+  const [models, setModels] = useState([]);
+
+  const fetchModels = async () => {
+    const { data } = await axios.get(`${BASE_URL}${BASE_API}/models/dropdown`);
+    setModels(data);
+  };
+
+  /**
+   * Fetch workers for dropdown menu
+   */
+
+  const [workers, setWorkers] = useState([]);
+
+  const fetchWorkers = async () => {
+    const { data } = await axios.get(`${BASE_URL}${BASE_API}/workers/dropdown`);
+    setWorkers(data);
+  };
+
+  /**
+   * Call both functions
+   */
+
+  useEffect(() => {
+    fetchModels();
+    fetchWorkers();
+  }, []);
+
+  /**
+   *
+   */
+
   const navigate = useNavigate();
 
   const _handleChange = (e) => {
@@ -31,20 +71,79 @@ export default function NewEquipment() {
 
   return (
     <div>
-      <p>New equipment coming soon</p>
+      <p>Create equipment</p>
       <form onSubmit={_handleSubmit}>
         <label>
           <p>Serial Number</p>
-          <input type="text" name="serial_num" onInput={_handleChange} />
+          <input
+            placeholder="Type in or scan barcode"
+            type="text"
+            name="serial_num"
+            onInput={_handleChange}
+          />
+        </label>
+
+        <label>
+          <p>Model</p>
+          <select name="model_id" onChange={_handleChange}>
+            <option hidden={true}>Select a model</option>
+            {models.map((model) => (
+              <option key={model.id} value={model.id}>
+                {model.model_name}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          <p>Assign Worker</p>
+          <select name="worker_id" onChange={_handleChange}>
+            <option hidden={true}>Select a worker</option>
+            {workers.map((worker) => (
+              <option key={worker.id} value={worker.id}>
+                {worker.first_name} {worker.last_name}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          <p>Date of Manufacture</p>
+          <input
+            placeholder="Not recorded"
+            type="date"
+            name="manufacture_date"
+            onInput={_handleChange}
+          />
         </label>
         <label>
-          <p>Model Id</p>
-          <input type="text" name="model_id" onInput={_handleChange} />
+          <p>Date of First Use</p>
+          <input
+            placeholder="Has not occurred yet"
+            type="date"
+            name="date_of_first_use"
+            onInput={_handleChange}
+          />
         </label>
         <label>
-          <p>Status</p>
-          <input type="text" name="status" onInput={_handleChange} />
+          <p>Lifespan To</p>
+          <input
+            placeholder="Unlimited"
+            type="date"
+            name="end_of_life"
+            onInput={_handleChange}
+          />
         </label>
+        <label>
+          <p>Specification</p>
+          <input
+            placeholder="E.g. size, colour, length, etc"
+            type="text"
+            name="specification"
+            onInput={_handleChange}
+          />
+        </label>
+
         <input type="submit" value="Submit" />
       </form>
     </div>

@@ -21,7 +21,16 @@ export default function Equipment() {
 
   return (
     <div>
-      <p>Equipment coming soon.</p>
+      {equipment.map((e) => {
+        return (
+          <>
+            <p>{e.serial_num}</p>
+            <p>{e.manufacture_date}</p>
+            <p>{e.specification}</p>
+            <p>{e.status}</p>
+          </>
+        );
+      })}
     </div>
   );
 }

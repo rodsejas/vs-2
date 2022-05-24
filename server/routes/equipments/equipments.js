@@ -27,6 +27,18 @@ router.post("/equipments", async (req, res) => {
   res.status(201).json(data);
 });
 
+// router.get("/equipment/worker", async (req, res) => {
+//   let { data: equipments, error } = await supabase.from("equipments").select(`*,
+//     workers (
+//       worker:workers(
+//         id,
+//         first_name
+//       ),
+//     )
+//   `);
+//   res.status(200).json(equipments);
+// });
+
 //
 
 export default router;
