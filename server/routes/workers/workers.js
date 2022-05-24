@@ -15,4 +15,13 @@ router.get("/workers/dropdown", async (req, res) => {
   res.status(200).json(workers);
 });
 
+router.get("/worker/:id", async (req, res) => {
+  const id = req.params.id;
+  let { data: workers, error } = await supabase
+    .from("workers")
+    .select("*")
+    .eq("id", id);
+  res.status(200).json(workers);
+});
+
 export default router;
