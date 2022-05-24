@@ -22,7 +22,6 @@ export default function Equipment() {
   return (
     <div>
       <p>Equipment coming soon.</p>
-      <p>Test</p>
     </div>
   );
 }
