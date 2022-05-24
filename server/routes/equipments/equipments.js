@@ -26,4 +26,6 @@ router.post("/equipments", async (req, res) => {
   const { data, error } = await supabase.from("equipments").insert([body]);
 });
 
+//
+
 export default router;
