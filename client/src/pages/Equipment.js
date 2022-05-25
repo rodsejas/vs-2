@@ -28,6 +28,8 @@ export default function Equipment() {
             <p>{e.manufacture_date}</p>
             <p>{e.specification}</p>
             <p>{e.status}</p>
+            <p>{e.workers.first_name}</p>
+            <p>{e.workers.last_name}</p>
           </>
         );
       })}

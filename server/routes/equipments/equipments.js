@@ -15,7 +15,7 @@ router.get("/equipment/:id", async (req, res) => {
   const id = req.params.id;
   let { data: equipments, error } = await supabase
     .from("equipments")
-    .select("*")
+    .select("*,workers!equipments_worker_id_fkey(first_name,last_name)")
     .eq("id", id);
   res.status(200).json(equipments);
 });
@@ -26,14 +26,5 @@ router.post("/equipments", async (req, res) => {
   const { data, error } = await supabase.from("equipments").insert([body]);
   res.status(201).json(data);
 });
-
-// router.get("/equipment/worker", async (req, res) => {
-//   let { data: equipments, error } = await supabase.from("equipments")
-//     .select(`*, workers(worker_id)
-//     )
-//   `);
-//   console.log(error);
-//   res.status(200).json(equipments);
-// });
 
 export default router;
