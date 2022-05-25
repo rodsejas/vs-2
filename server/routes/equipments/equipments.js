@@ -7,7 +7,9 @@ router.use(express.json());
 router.get("/equipments", async (req, res) => {
   let { data: equipments, error } = await supabase
     .from("equipments")
-    .select("*");
+    .select(
+      "*,workers!equipments_worker_id_fkey(first_name,last_name), models!equipments_model_id_fkey(model_name)"
+    );
   res.status(200).json(equipments);
 });
 
