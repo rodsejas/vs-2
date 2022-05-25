@@ -61,4 +61,17 @@ router.get("/equipment/:id/edit", async (req, res) => {
   res.status(200).json(equipments);
 });
 
+/**
+ * DELETE
+ */
+
+router.delete("/equipment/:id", async (req, res) => {
+  const id = req.params.id;
+  const { data, error } = await supabase
+    .from("equipments")
+    .delete()
+    .eq("id", id);
+  res.status(200).json(data);
+});
+
 export default router;
