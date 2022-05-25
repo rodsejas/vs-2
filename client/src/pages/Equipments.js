@@ -18,8 +18,12 @@ export default function Equipments() {
   }, []);
 
   return (
-    <div>
+    <>
       <NavBar />
+      <Link to={`/equipment/create`}>
+        <button>Create new equipment</button>
+      </Link>
+
       {equipments.map((e) => {
         return (
           <Link to={`/equipment/${e.id}`}>
@@ -33,6 +37,6 @@ export default function Equipments() {
           </Link>
         );
       })}
-    </div>
+    </>
   );
 }

@@ -15,7 +15,9 @@ router.get("/equipment/:id", async (req, res) => {
   const id = req.params.id;
   let { data: equipments, error } = await supabase
     .from("equipments")
-    .select("*,workers!equipments_worker_id_fkey(first_name,last_name)")
+    .select(
+      "*,workers!equipments_worker_id_fkey(first_name,last_name), models!equipments_model_id_fkey(model_name)"
+    )
     .eq("id", id);
   res.status(200).json(equipments);
 });
@@ -25,6 +27,38 @@ router.post("/equipments", async (req, res) => {
   console.log(body);
   const { data, error } = await supabase.from("equipments").insert([body]);
   res.status(201).json(data);
+});
+
+/**
+ * PUT -> Edit equipment, all fields
+ */
+
+router.put("/equipment/:id/edit", async (req, res) => {
+  const body = req.body;
+  const id = req.params.id;
+  const { data, error } = await supabase
+    .from("equipments")
+    .update(body)
+    .eq("id", id);
+  if (error) {
+    return res.status(400).end();
+  }
+  console.log("Error:", error);
+  console.log("Data:", data);
+  res.status(200).json(data);
+});
+
+/**
+ * GET -> Edit equipment page, return obj without foreign key table queries
+ */
+
+router.get("/equipment/:id/edit", async (req, res) => {
+  const id = req.params.id;
+  let { data: equipments, error } = await supabase
+    .from("equipments")
+    .select("*")
+    .eq("id", id);
+  res.status(200).json(equipments);
 });
 
 export default router;
