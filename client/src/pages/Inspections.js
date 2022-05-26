@@ -22,7 +22,7 @@ export default function Inspections() {
       <NavBar />
       {inspections.map((i) => {
         return (
-          <Link to={`/inspections/${i.id}`}>
+          <Link to={`/inspection/${i.id}`}>
             <div key={i.id}>
               <p>{i.inspection_date}</p>
               <p>{i.equipments.serial_num}</p>
@@ -30,7 +30,8 @@ export default function Inspections() {
               <p>
                 {i.workers.first_name} {i.workers.last_name}
               </p>
-              {i.has_passed ? "Suitable" : "Not suitable"}
+              <p> {i.has_passed ? "Suitable" : "Not suitable"}</p>
+              <p>.............</p>
             </div>
           </Link>
         );
