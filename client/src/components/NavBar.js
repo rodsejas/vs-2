@@ -13,6 +13,9 @@ export default function NavBar() {
       <NavLink to="/inspections">
         <span>Inspections || </span>
       </NavLink>
+      <NavLink to="/models">
+        <span>Models</span>
+      </NavLink>
     </nav>
   );
 }
