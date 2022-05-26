@@ -22,9 +22,12 @@ router.get("/equipment/:id", async (req, res) => {
   res.status(200).json(equipments);
 });
 
+/**
+ * POST -> Create new equipment
+ */
+
 router.post("/equipments", async (req, res) => {
   const body = req.body;
-  console.log(body);
   const { data, error } = await supabase.from("equipments").insert([body]);
   res.status(201).json(data);
 });

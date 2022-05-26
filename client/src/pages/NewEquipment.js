@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
+import NavBar from "../components/NavBar";
 
 export default function NewEquipment() {
   const [newEquipment, setNewEquipment] = useState({
@@ -71,6 +72,7 @@ export default function NewEquipment() {
 
   return (
     <div>
+      <NavBar />
       <p>Create equipment</p>
       <form onSubmit={_handleSubmit}>
         <label>

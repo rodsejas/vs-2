@@ -7,6 +7,10 @@ import EditEquipment from "./pages/EditEquipment";
 import NewEquipment from "./pages/NewEquipment";
 import Workers from "./pages/Workers";
 import Worker from "./pages/Worker";
+import Models from "./pages/Models";
+import Model from "./pages/Model";
+import EditModel from "./pages/EditModel";
+import NewModel from "./pages/NewModel";
 
 function App() {
   return (
@@ -20,6 +24,10 @@ function App() {
           <Route path="/equipment/create" element={<NewEquipment />} />
           <Route path="/workers" element={<Workers />} />
           <Route path="/worker/:id" element={<Worker />} />
+          <Route path="/models" element={<Models />} />
+          <Route path="/model/:id" element={<Model />} />
+          <Route path="/model/:id/edit" element={<EditModel />} />
+          <Route path="/model/create" element={<NewModel />} />
         </Routes>
       </Router>
     </div>

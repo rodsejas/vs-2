@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { BASE_URL, BASE_API } from "../Constants";
 import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 export default function Equipment() {
   const [equipment, setEquipment] = useState([]);
@@ -38,6 +39,7 @@ export default function Equipment() {
       {equipment.map((e) => {
         return (
           <>
+            <NavBar />
             <p>{e.serial_num}</p>
             <p>{e.manufacture_date}</p>
             <p>{e.specification}</p>
