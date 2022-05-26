@@ -47,6 +47,16 @@ router.post("/equipments", async (req, res) => {
 });
 
 /**
+ * POST -> Create new inspection for the equipment
+ */
+
+router.post("/inspections", async (req, res) => {
+  const body = req.body;
+  const { data, error } = await supabase.from("inspections").insert([body]);
+  res.status(201).json(data);
+});
+
+/**
  * PUT -> Edit equipment, all fields
  */
 

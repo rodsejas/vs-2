@@ -9,6 +9,7 @@ import Workers from "./pages/Workers";
 import Worker from "./pages/Worker";
 import Inspections from "./pages/Inspections";
 import Inspection from "./pages/Inspection";
+import NewInspection from "./pages/NewInspection";
 import Models from "./pages/Models";
 import Model from "./pages/Model";
 import EditModel from "./pages/EditModel";
@@ -28,6 +29,10 @@ function App() {
           <Route path="/worker/:id" element={<Worker />} />
           <Route path="/inspections" element={<Inspections />} />
           <Route path="/inspection/:id" element={<Inspection />} />
+          <Route
+            path="/equipment/:id/inspection/create"
+            element={<NewInspection />}
+          />
           <Route path="/models" element={<Models />} />
           <Route path="/model/:id" element={<Model />} />
           <Route path="/model/:id/edit" element={<EditModel />} />

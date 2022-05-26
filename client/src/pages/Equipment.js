@@ -65,6 +65,9 @@ export default function Equipment() {
               <button>Edit Equipment</button>
             </Link>
             <button onClick={_handleDelete}>Delete Equipment</button>
+            <Link to={`/equipment/${e.id}/inspection/create`}>
+              <button> New Inspection</button>
+            </Link>
             {inspections.map((i) => {
               return (
                 <Link to={`/inspection/${i.id}`}>
