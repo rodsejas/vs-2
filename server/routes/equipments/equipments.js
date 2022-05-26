@@ -25,6 +25,18 @@ router.get("/equipment/:id", async (req, res) => {
 });
 
 /**
+ * GET -> All inspections by equipment ID
+ */
+router.get("/equipment/:id/inspections", async (req, res) => {
+  const id = req.params.id;
+  let { data: inspections, error } = await supabase
+    .from("inspections")
+    .select("*,workers!inspections_worker_id_fkey(first_name,last_name)")
+    .eq("equipment_id", id);
+  res.status(200).json(inspections);
+});
+
+/**
  * POST -> Create new equipment
  */
 

@@ -33,7 +33,7 @@ export default function Inspection() {
             {inspection.workers.first_name} {inspection.workers.last_name}
           </p>
           <p>{inspection.notes}</p>
-          <p> {inspection.has_passed ? "Suitable" : "Not suitable"}</p>
+          <p>{inspection.has_passed ? "Suitable" : "Not suitable"}</p>
         </div>
       ) : (
         <p>Loading...</p>

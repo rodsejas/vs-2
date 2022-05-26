@@ -8,6 +8,8 @@ import NavBar from "../components/NavBar";
 
 export default function Equipment() {
   const [equipment, setEquipment] = useState([]);
+  const [inspections, setInspections] = useState([]);
+
   const params = useParams();
   const navigate = useNavigate();
 
@@ -16,6 +18,13 @@ export default function Equipment() {
       `${BASE_URL}${BASE_API}/equipment/${params.id}`
     );
     setEquipment(data);
+  };
+
+  const fetchInspections = async () => {
+    const { data } = await axios.get(
+      `${BASE_URL}${BASE_API}/equipment/${params.id}/inspections`
+    );
+    setInspections(data);
   };
 
   const _handleDelete = async (e) => {
@@ -32,6 +41,7 @@ export default function Equipment() {
 
   useEffect(() => {
     fetchEquipment();
+    fetchInspections();
   }, []);
 
   return (
@@ -55,6 +65,18 @@ export default function Equipment() {
               <button>Edit Equipment</button>
             </Link>
             <button onClick={_handleDelete}>Delete Equipment</button>
+            {inspections.map((i) => {
+              return (
+                <Link to={`/inspection/${i.id}`}>
+                  <p>Inspection Date: {i.inspection_date}</p>
+                  <p>
+                    Technician: {i.workers.first_name} {i.workers.last_name}
+                  </p>
+                  <p>Notes: {i.notes}</p>
+                  <p>Result: {i.has_passed ? "Suitable" : "Not Suitable"}</p>
+                </Link>
+              );
+            })}
           </>
         );
       })}
