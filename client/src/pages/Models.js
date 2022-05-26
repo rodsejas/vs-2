@@ -26,8 +26,8 @@ export default function Models() {
 
       {models.map((m) => {
         return (
-          <Link to={`/model/${m.id}`}>
-            <div key={m.id}>
+          <Link key={m.id} to={`/model/${m.id}`}>
+            <div>
               <h2>{m.model_name}</h2>
             </div>
           </Link>

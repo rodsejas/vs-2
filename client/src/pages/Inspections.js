@@ -22,8 +22,8 @@ export default function Inspections() {
       <NavBar />
       {inspections.map((i) => {
         return (
-          <Link to={`/inspection/${i.id}`}>
-            <div key={i.id}>
+          <Link key={i.id} to={`/inspection/${i.id}`}>
+            <div>
               <p>{i.inspection_date}</p>
               <p>{i.equipments.serial_num}</p>
               <p>{i.equipments.models.model_name}</p>

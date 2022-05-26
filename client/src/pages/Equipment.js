@@ -46,10 +46,10 @@ export default function Equipment() {
 
   return (
     <div>
+      <NavBar />
       {equipment.map((e) => {
         return (
-          <>
-            <NavBar />
+          <div key={e.id}>
             <p>{e.serial_num}</p>
             <p>{e.manufacture_date}</p>
             <p>{e.specification}</p>
@@ -70,7 +70,7 @@ export default function Equipment() {
             </Link>
             {inspections.map((i) => {
               return (
-                <Link to={`/inspection/${i.id}`}>
+                <Link key={i.id} to={`/inspection/${i.id}`}>
                   <p>Inspection Date: {i.inspection_date}</p>
                   <p>
                     Technician: {i.workers.first_name} {i.workers.last_name}
@@ -80,7 +80,7 @@ export default function Equipment() {
                 </Link>
               );
             })}
-          </>
+          </div>
         );
       })}
     </div>

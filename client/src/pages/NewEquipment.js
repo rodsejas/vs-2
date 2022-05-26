@@ -10,9 +10,9 @@ export default function NewEquipment() {
     serial_num: "",
     model_id: "",
     worker_id: "",
-    manufacture_date: "",
-    date_of_first_use: "",
-    end_of_life: "",
+    manufacture_date: null,
+    date_of_first_use: null,
+    end_of_life: null,
     specification: "",
     status: "Suitable",
   });

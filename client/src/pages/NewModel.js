@@ -71,11 +71,12 @@ export default function NewModel() {
             type="number"
             min="0"
             step="1"
-            placeholder="months"
+            placeholder="120"
             name="lifespan_from_manufacture"
             required
             onInput={_handleChange}
-          />
+          />{" "}
+          months
         </label>
 
         <label>
@@ -85,11 +86,12 @@ export default function NewModel() {
             min="0"
             max="12"
             step="1"
-            placeholder="months"
+            placeholder="3"
             name="inspection_frequency"
             required
             onInput={_handleChange}
-          />
+          />{" "}
+          months
         </label>
 
         <br />

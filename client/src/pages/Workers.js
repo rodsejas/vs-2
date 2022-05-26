@@ -22,8 +22,8 @@ export default function Workers() {
       <NavBar />
       {workers.map((worker) => {
         return (
-          <Link to={`/worker/${worker.id}`}>
-            <div key={worker.id}>
+          <Link key={worker.id} to={`/worker/${worker.id}`}>
+            <div>
               <h2>{worker.first_name}</h2>
               <p>{worker.last_name}</p>
             </div>

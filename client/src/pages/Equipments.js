@@ -26,25 +26,24 @@ export default function Equipments() {
 
       {equipments.map((e) => {
         return (
-          <Link to={`/equipment/${e.id}`}>
-            <div key={e.id}>
+          <Link key={e.id} to={`/equipment/${e.id}`}>
+            <div>
               {e.models !== null ? (
-                <h1>{e.models.model_name} </h1>
+                <h1>Model name: {e.models.model_name} </h1>
               ) : (
                 <h1>No model assigned</h1>
               )}
-              <p>{e.serial_num}</p>
-              <p>{e.manufacture_date}</p>
-              <p>{e.date_of_first_use}</p>
-              <p>{e.end_of_life}</p>
+              <p>Serial number: {e.serial_num}</p>
               {e.workers !== null ? (
                 <p>
-                  {e.workers.first_name} {e.workers.last_name}{" "}
+                  Worker: {e.workers.first_name} {e.workers.last_name}{" "}
                 </p>
               ) : (
                 <p>No Worker assigned</p>
               )}
-              <p>{e.status}</p>
+              <p>End of Life: {e.end_of_life}</p>
+              <p>Next Inspection Due: {e.next_inspection_due}</p>
+              <p>Status: {e.status}</p>
             </div>
           </Link>
         );

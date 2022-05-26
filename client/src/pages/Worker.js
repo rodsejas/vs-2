@@ -25,10 +25,10 @@ export default function Worker() {
       <NavBar />
       {worker.map((w) => {
         return (
-          <>
+          <div key={w.id}>
             <p>{w.first_name}</p>
             <p>{w.last_name}</p>
-          </>
+          </div>
         );
       })}
     </div>
