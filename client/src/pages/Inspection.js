@@ -24,15 +24,20 @@ export default function Inspection() {
   return (
     <>
       <NavBar />
-      <div>
-        <p>{inspection.inspection_date}</p>
-        {/* <p>{inspection.equipments.serial_num}</p>
-        <p>{inspection.equipments.models.model_name}</p>
-        <p>
-          {inspection.workers.first_name} {inspection.workers.last_name}
-        </p>
-        <p> {inspection.has_passed ? "Suitable" : "Not suitable"}</p> */}
-      </div>
+      {Object.keys(inspection).length !== 0 ? (
+        <div>
+          <p>{inspection.inspection_date}</p>
+          <p>{inspection.equipments.serial_num}</p>
+          <p>{inspection.equipments.models.model_name}</p>
+          <p>
+            {inspection.workers.first_name} {inspection.workers.last_name}
+          </p>
+          <p>{inspection.notes}</p>
+          <p> {inspection.has_passed ? "Suitable" : "Not suitable"}</p>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   );
 }
